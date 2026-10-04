@@ -2,16 +2,18 @@
 
 import Image from "next/image";
 
+export type PropertyListing = {
+  id: number;
+  address: string;
+  city: string;
+  price: number;
+  bedrooms: number;
+  bathrooms: number;
+  imageUrl: string;
+};
+
 type PropertyCardProps = {
-  property: {
-    id: number;
-    address: string;
-    city: string;
-    price: number;
-    bedrooms: number;
-    bathrooms: number;
-    imageUrl: string;
-  };
+  property: PropertyListing;
 };
 
 export default function PropertyCard({ property }: PropertyCardProps) {
