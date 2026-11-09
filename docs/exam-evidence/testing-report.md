@@ -9,16 +9,18 @@
 | Unauthenticated POST request | Passed — HTTP 401 |
 | Invalid Zod input | Passed — rejected |
 | Valid Zod input | Passed — accepted |
-| GET /api/services | Pending database integration |
-| Authenticated POST request | Not tested |
+| GET /api/services | Passed — HTTP 200 |
+| Authenticated POST request | Passed — HTTP 201 |
 
 ### Findings
 
 The API correctly rejects users who are not signed in.
 
-Zod validation rejects invalid service information and accepts valid information.
+Zod validation rejects invalid service information and accepts valid information. These checks were performed directly against the schema.
 
-The GET endpoint currently returns an error because the public.services table was not found in Supabase.
+The GET endpoint successfully returned two approved services from Supabase. This was also verified on the Vercel Preview deployment.
+
+An authenticated POST request using Provider A successfully created a service with HTTP 201. The response confirmed that the service was saved with the correct provider ID and a status of `draft`.
 
 ## Part 6: ServiceCard UI
 
@@ -40,6 +42,4 @@ The Book Service button is disabled until booking functionality is connected.
 
 ## Remaining Work
 
-- Test authenticated API requests.
-- Verify Supabase database integration.
-- Complete final testing with teammate.
+No remaining tests for Parts 5 and 6 in this report. Authenticated invalid-input HTTP responses have not been separately verified.
