@@ -64,4 +64,4 @@ Administrative testing using the elevated service role successfully accessed ser
 
 The available screenshots show passing results for the tested RLS access restrictions.
 
-The anonymous booking insertion test and RLS activation across all five tables still need final verification.
+RLS activation was verified on all five required tables. The anonymous booking insertion test remains unverified.
