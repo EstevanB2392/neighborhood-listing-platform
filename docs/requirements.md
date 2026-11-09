@@ -182,8 +182,12 @@ Source review confirmed that the services route uses approved-only public
 reads, provider role checks, strict payload validation, and authenticated
 draft creation. The server helper uses the anon key with session cookies.
 
-Live GET and authenticated POST integration must still be verified with
-the partner responsible for Part 5. Database role simulation does not
+The deployed GET /api/services endpoint returned both approved sample
+services and only the five required public fields. Evidence:
+[Deployed GET result](exam-evidence/10-deployed-services-api.png).
+
+Authenticated POST integration still requires verification with the
+partner responsible for Part 5. Database role simulation does not
 verify application login or HTTP session handling.
 
 District/coverage-zone support and account deactivation remain subject
