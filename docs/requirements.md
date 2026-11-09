@@ -164,13 +164,27 @@ Scope estimate: Large
   an administrative route is not specified by the assignment
 - Verification: docs/security-audit.md
 
+## Implementation Traceability
+
+| Story | Database Implementation | Route / Server Implementation | Verification |
+|---|---|---|---|
+| 1 — Merchant / Provider | [Persistence migration](../supabase/migrations/20261029140000_exam_services_persistence.sql): profiles and services. [RLS migration](../supabase/migrations/20261029141000_exam_services_rls.sql): provider ownership, draft creation, and edit restrictions. | POST /api/services in [route.ts](../src/app/api/services/route.ts), using [serviceSchema](../src/schemas/service.ts) and the authenticated [server client](../src/lib/supabaseServer.ts). | [Security audit](security-audit.md), especially provider update and lifecycle tests. |
+| 2 — Client / Resident | [Persistence migration](../supabase/migrations/20261029140000_exam_services_persistence.sql): services, categories, mappings, and bookings. [RLS migration](../supabase/migrations/20261029141000_exam_services_rls.sql): public discovery, booking insertion, and booking privacy. | GET /api/services in [route.ts](../src/app/api/services/route.ts). Booking insertion is governed by database policies; this route does not implement booking submission. | [Security audit](security-audit.md), especially anonymous reads, category visibility, and client/anonymous booking tests. |
+| 3 — Administrator | [Persistence migration](../supabase/migrations/20261029140000_exam_services_persistence.sql): all five tables. [RLS migration](../supabase/migrations/20261029141000_exam_services_rls.sql): elevated service-role grants. | Administrative route not implemented in the reviewed services handler. Elevated database execution was tested separately. Account deactivation requires trusted Supabase Auth administration. | [Security audit](security-audit.md): elevated service updates and booking reads. |
+
 ## Implementation and Verification Status
 
-This document defines acceptance targets, not completed test results.
+Both database migrations executed successfully in the team's Supabase
+project. RLS activation and the authorization cases recorded in
+docs/security-audit.md were verified.
 
-The migration, security policies, and authorization audit will be
-implemented and verified in Parts 3 and 4. API integration must be
-confirmed with the partner responsible for Part 5.
+Source review confirmed that the services route uses approved-only public
+reads, provider role checks, strict payload validation, and authenticated
+draft creation. The server helper uses the anon key with session cookies.
 
-The physical location of the /api/services handler must be checked
-against the repository's app directory structure.
+Live GET and authenticated POST integration must still be verified with
+the partner responsible for Part 5. Database role simulation does not
+verify application login or HTTP session handling.
+
+District/coverage-zone support and account deactivation remain subject
+to the scope limitations stated above.
