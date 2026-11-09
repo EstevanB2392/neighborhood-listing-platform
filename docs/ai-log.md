@@ -13,3 +13,13 @@
 | Part 1 / ChatGPT | Asked how to set up the midterm exam using GitHub Codespaces instead of local VS Code. | Followed instructions to check Git status, create the exam branch, and push it to GitHub. | None. | Confirmed clean working tree, successful branch creation, and successful push in the terminal. | Pending |
 | Part 1 / ChatGPT | Asked how to verify Git security settings. | Reviewed .gitignore and added dist/ to match exam requirements. | None. | Inspected .gitignore and confirmed environment files and build folders are ignored. | Pending |
 | Part 1 / ChatGPT | Asked how to create and maintain the AI provenance journal. | Used the provided terminal commands and Markdown table format. | Did not replace the existing AI log because it contained previous lab records. | Opened docs/ai-log.md and verified existing entries were preserved. | Pending |
+
+## Midterm Practical Exam — Parts 5 and 6
+
+| Step / Tool | Prompt Summary | Model Output Used | Model Output Rejected & Rationale | Verification Method | Associated Git Commit |
+|---|---|---|---|---|---|
+| Part 1 / ChatGPT | Asked for help setting up the exam branch and securing environment files. | Followed Git branching and .gitignore instructions. | No major suggestions rejected. | Verified branch, clean working tree, and successful push. | e0e44d1 |
+| Part 5 / ChatGPT | Asked for help creating Zod validation and Supabase API routes. | Used the suggested schema, GET handler, POST handler, and authentication checks. | Did not treat untested database requests as successful because the services table was unavailable. | TypeScript and ESLint passed. Valid and invalid Zod payloads were tested. Unauthenticated POST returned HTTP 401. | 47a9cae |
+| Part 6 / ChatGPT | Asked for help creating a reusable ServiceCard component. | Used the component structure, service information, and accessible booking button. | Left booking functionality disabled because it was not implemented. | Checked desktop and mobile display and basic keyboard navigation. | ef862f9 |
+| Testing / ChatGPT | Asked for help documenting exam testing results. | Created a testing report covering API validation and UI tests. | Did not mark database integration as passed because GET returned HTTP 500. | Ran curl requests and reviewed TypeScript, ESLint, and UI results. | c4aaa9e |
+| Part 6 Improvements / ChatGPT | Asked for help checking the component against the exam rubric. | Added semantic header, unordered specifications list, and responsive Tailwind grid. | Kept the existing working component rather than replacing the entire page. | TypeScript and ESLint passed after changes. | 82b7869 |
