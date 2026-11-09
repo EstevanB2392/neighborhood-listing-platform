@@ -11,8 +11,10 @@ A Next.js neighborhood property platform for exploring local listings, connectin
 - App Router
 
 ## Live Deployment
+https://neighborhood-listing-platform-cazrb9565-estevan1.vercel.app
 
-https://neighborhood-listing-platform-rho.vercel.app
+## Services API
+https://neighborhood-listing-platform-cazrb9565-estevan1.vercel.app/api/services
 
 ## Development
 
