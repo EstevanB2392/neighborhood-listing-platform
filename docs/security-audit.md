@@ -97,3 +97,14 @@ The available screenshots show passing results for the tested RLS access restric
 RLS activation was verified on all five required tables. Authenticated
 client and anonymous booking inserts also completed successfully,
 while booking reads remained restricted.
+
+## Deployed GET Verification
+
+The deployed GET /api/services endpoint returned the two approved sample
+services and excluded the two draft samples. Each returned record contained
+only id, title, hourly_rate, duration_minutes, and coverage_radius_miles.
+
+Evidence: [Deployed GET result](exam-evidence/10-deployed-services-api.png).
+
+This verifies deployed GET integration. Authenticated POST remains
+unverified in this audit.
