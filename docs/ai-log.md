@@ -23,3 +23,27 @@
 | Part 6 / ChatGPT | Asked for help creating a reusable ServiceCard component. | Used the component structure, service information, and accessible booking button. | Left booking functionality disabled because it was not implemented. | Checked desktop and mobile display and basic keyboard navigation. | ef862f9 |
 | Testing / ChatGPT | Asked for help documenting exam testing results. | Created a testing report covering API validation and UI tests. | Did not mark database integration as passed because GET returned HTTP 500. | Ran curl requests and reviewed TypeScript, ESLint, and UI results. | c4aaa9e |
 | Part 6 Improvements / ChatGPT | Asked for help checking the component against the exam rubric. | Added semantic header, unordered specifications list, and responsive Tailwind grid. | Kept the existing working component rather than replacing the entire page. | TypeScript and ESLint passed after changes. | 82b7869 |
+
+## Midterm Practical Exam — Parts 2, 3, and 4
+
+Contributor: Ethan Franklin (ethanfranklinca)
+
+### Original Request to ChatGPT
+
+> Im doing this with a partner and we already have a repository that I was added to as a collaborator. We just added a branch called "exam/services-booking-eval" to do the assignment in. Im supposed to do parts 2, 3, and 4 and he does the rest. Walk me through every step, step by step for my parts and any other parts i need to have done. I also need to know any prerequisites I should have.
+
+The table below summarizes the follow-up assistance and verification.
+
+| Step / Tool | Prompt Summary | Model Output Used | Model Output Rejected & Rationale | Verification Method | Associated Git Commit |
+|---|---|---|---|---|---|
+| Part 2 / ChatGPT | Requested step-by-step help completing requirements for the assigned exam parts. | Used three user stories, Given/When/Then acceptance criteria, scope estimates, and database/API traceability. | Did not claim district or coverage-zone support because those entities are absent from the required schema. | Reviewed requirements against the assignment and confirmed the file was saved in GitHub. | 0dfa886 |
+| Part 3 / ChatGPT | Requested browser-based guidance for creating the PostgreSQL migration. | Used DDL for all five tables, required foreign keys, checks, defaults, and immediate RLS activation. | Adapted the original local-terminal workflow to GitHub browser editing and Supabase SQL Editor because that was my working environment. | Executed the persistence SQL successfully in Supabase and verified RLS activation on all five tables. | 47eee1d |
+| Part 4 / ChatGPT | Requested guidance implementing provider ownership, public reads, booking privacy, and elevated administration. | Used least-privilege grants and RLS policies in a separate versioned migration. | Did not treat an ordinary admin profile as equivalent to elevated service-role execution. | Executed the security migration successfully and tested anon, authenticated provider/client, and service_role database contexts. | 1fd781a |
+| Part 4 Testing / ChatGPT | Requested step-by-step authorization tests and screenshot naming instructions. | Used SQL tests for public service reads, provider updates, client privacy, provider booking visibility, elevated access, anonymous bookings, categories, and provider lifecycle operations. | Did not use unrestricted SQL Editor results as proof of ordinary-user access; tests switched database roles and set user claims where required. | Compared actual results with expected counts; uploaded nine evidence screenshots. Test changes were rolled back. | d0bb5a3, 434f2c4, b1ed280 |
+| Part 4 Audit / ChatGPT | Asked how to update the existing security audit without overwriting it. | Used targeted edits documenting successful booking inserts, role simulation, rollback behavior, and test limitations. | Did not replace the existing audit or claim unexecuted security tests had passed. | Compared the audit with completed SQL scripts and screenshots; distinguished database tests from API integration tests. | 2dd0cfe |
+
+### Team Attribution
+
+The existing security audit and RLS confirmation were also updated by
+partner EstebanB2392 in commits 5b81e0f and 0565453. My audit corrections
+are recorded in 2dd0cfe.
