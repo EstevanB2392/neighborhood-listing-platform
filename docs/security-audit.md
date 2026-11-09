@@ -31,12 +31,24 @@ The goal was to make sure users only have access to the information and actions 
 | Provider | Delete own draft | 1 deleted | PASS |
 | Provider | Delete another provider's draft | 0 deleted | PASS |
 | Provider | Delete approved service | 0 deleted | PASS |
+| Client | Insert valid booking | INSERT completed without error; rolled back afterward | PASS |
+| Anonymous | Insert valid booking | INSERT completed without error; rolled back afterward | PASS |
 
 ## Booking Insert Test
 
-A separate screenshot documents anonymous booking testing.
+Both authenticated client and anonymous booking inserts completed
+successfully during SQL Editor testing.
 
-The result should be verified before marking this test as passed.
+Each test executed an INSERT without RETURNING, followed by a booking
+SELECT under the same role. Both SELECT queries returned zero visible
+bookings, confirming booking privacy. The transactions ended with
+ROLLBACK, removing the temporary bookings.
+
+The screenshots show the final privacy results; successful insertion
+was verified by the preceding INSERT completing without error.
+
+- Client: [04-client-privacy.png](exam-evidence/04-client-privacy.png)
+- Anonymous: [07-anonymous-booking.png](exam-evidence/07-anonymous-booking.png)
 
 ## Evidence Files
 
@@ -49,6 +61,24 @@ The result should be verified before marking this test as passed.
 - docs/exam-evidence/07-anonymous-booking.png
 - docs/exam-evidence/08-category-visibility.png
 - docs/exam-evidence/09-provider-lifecycle.png
+
+## Verification Method and Limits
+
+Anonymous tests used SET LOCAL ROLE anon. Provider and client tests
+set transaction-local request.jwt.claims to the test user's identity,
+then used SET LOCAL ROLE authenticated. Administrative testing used
+SET LOCAL ROLE service_role.
+
+Authorization test transactions ended with ROLLBACK, restoring test
+changes. These checks test database authorization, not application
+login or HTTP session handling.
+
+The elevated test verified updates to four services and reads of two
+bookings. It did not exercise every operation on all five tables.
+
+Profile role escalation, forged service ownership, and explicit
+approved-service insertion attempts were not separately tested.
+Their protections are defined by the migration's grants and policies.
 
 ## Findings
 
@@ -64,4 +94,6 @@ Administrative testing using the elevated service role successfully accessed ser
 
 The available screenshots show passing results for the tested RLS access restrictions.
 
-RLS activation was verified on all five required tables. The anonymous booking insertion test remains unverified.
+RLS activation was verified on all five required tables. Authenticated
+client and anonymous booking inserts also completed successfully,
+while booking reads remained restricted.
