@@ -15,23 +15,23 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   return (
     <article className="rounded-lg border border-gray-300 bg-white p-5 shadow-sm">
-      <h2 className="mb-3 text-xl font-semibold text-gray-900">
-        {title}
-      </h2>
+      <header className="mb-3">
+        <h2 className="text-xl font-semibold text-gray-900">
+          {title}
+        </h2>
+      </header>
 
-      <div className="space-y-2 text-gray-700">
-        <p>
-          <strong>Hourly Rate:</strong> ${hourlyRate.toFixed(2)}
-        </p>
-
-        <p>
-          <strong>Duration:</strong> {durationMinutes} minutes
-        </p>
-
-        <p>
-          <strong>Coverage:</strong> {coverageRadiusMiles} miles
-        </p>
-      </div>
+      <ul className="mb-4 list-disc space-y-2 pl-5 text-gray-700">
+  <li>
+    <strong>Hourly Rate:</strong> ${hourlyRate.toFixed(2)}
+  </li>
+  <li>
+    <strong>Duration:</strong> {durationMinutes} minutes
+  </li>
+  <li>
+    <strong>Coverage:</strong> {coverageRadiusMiles} miles
+  </li>
+</ul>
 
       <button
         type="button"
